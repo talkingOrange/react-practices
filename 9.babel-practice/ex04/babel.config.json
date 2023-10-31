@@ -1,0 +1,21 @@
+// babel이 이 파일을 읽는다.
+// 이 프리셋은 타겟에 맞추어 변환시킨다.
+
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": 11,
+          "edge": "89",
+          "firefox": "92",
+          "chrome": "90",
+          "opera": "76",
+          "safari": "15"
+        }
+      }
+    ]
+  ],
+  "plugins": []
+}
