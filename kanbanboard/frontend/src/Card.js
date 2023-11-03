@@ -1,8 +1,8 @@
 import React from "react";
-import "./assets/scss/Card.scss";
+import styles from "./assets/scss/Card.scss";
 function Card(props) {
   return (
-    <div class="Card">
+    <div className={styles.Card}>
       <div class="Card__Title">Write some code</div>
       <div class="Card__Details">
         Code along with the samples in the book
