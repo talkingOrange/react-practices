@@ -17,4 +17,9 @@ public class EmaillistRepository {
 	public List<EmaillistVo> findAll() {
 		return sqlSession.selectList("emaillist.findAll");
 	}
+	
+	public Boolean insert(EmaillistVo vo) {
+		int count = sqlSession.insert("emaillist.insert", vo);
+		return count == 1;
+	}
 }

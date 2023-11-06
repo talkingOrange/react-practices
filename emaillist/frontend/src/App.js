@@ -26,6 +26,8 @@ function App() {
       },
       body: JSON.stringify(email),
     });
+
+    fetchList();
   };
 
   const fetchList = async () => {

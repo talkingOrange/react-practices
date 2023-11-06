@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./assets/scss/RegisterForm.scss";
 
 function RegisterForm({ addEmail }) {
