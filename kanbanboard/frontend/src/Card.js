@@ -1,35 +1,32 @@
-import React from "react";
-import styles from "./assets/scss/Card.scss";
-function Card(props) {
-  return (
-    <div className={styles.Card}>
-      <div class="Card__Title">Write some code</div>
-      <div class="Card__Details">
-        Code along with the samples in the book
-        <div class="TaskList">
-          <ul>
-            <li class="TaskList__Task">
-              <input type="checkbox" checked="true" />
-              ContactList Example
-              <a href="#" class="TaskList__Task--remove"></a>
-            </li>
+import React, {useState} from 'react';
+import styles from './assets/scss/Card.scss';
+import TaskList from './TaskList';
 
-            <li class="TaskList__Task">
-              <input type="checkbox" checked="false" />
-              Kanban Example
-              <a href="#" class="TaskList__Task--remove"></a>
-            </li>
+const Card = ({no, title, description, tasks}) => {
+    const [showDetails, setShowDetails] = useState(false);
 
-            <li class="TaskList__Task">
-              <input type="checkbox" checked="false" />
-              My own experiments
-              <a href="#" class="TaskList__Task--remove"></a>
-            </li>
-          </ul>
+    return (
+        <div className={styles.Card}>
+            <div
+                className={
+                    showDetails ?
+                        [styles.Card__Title, styles.Card__Title__open].join(' '):
+                        styles.Card__Title
+                }
+                onClick={e => {
+                    setShowDetails(!showDetails);
+                }}>
+                {title}
+            </div>
+            {showDetails ? 
+                <div className={styles.Card__Details}>
+                    {description}
+                    <TaskList tasks={tasks}/>
+                </div>:
+                null
+            }   
         </div>
-      </div>
-    </div>
-  );
-}
+    );
+};
 
 export default Card;
