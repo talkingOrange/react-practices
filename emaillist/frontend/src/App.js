@@ -1,79 +1,82 @@
-import React, { useState, useEffect } from "react";
-import "./assets/scss/App.scss";
-import RegisterForm from "./RegisterForm";
-import SearchBar from "./SearchBar";
-import Emaillist from "./Emaillist";
+import React, {useState, useEffect} from 'react';
+import './assets/scss/App.scss';
+import RegisterForm from './RegisterForm';
+import SearchBar from './SearchBar';
+import Emaillist from './Emaillist';
 // import data from './assets/json/data';
 
 function App() {
-  const [emails, setEmails] = useState(null);
+    console.log('안녕!');
+    const [emails, setEmails] = useState(null);
 
-  const addEmail = async (email) => {
-    try {
-      const response = await fetch("/api", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(email),
-      });
+    const addEmail = async (email) => {
+        try {
+            const response = await fetch('/api', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(email)
+            });
 
-      if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText}`);
-      }
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
 
-      const json = await response.json();
+            const json = await response.json();
 
-      if (json.result !== "success") {
-        throw new Error(`${json.result} ${json.message}`);
-      }
+            if(json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`)
+            }
 
-      fetchEmails();
-    } catch (err) {
-      console.error(err);
+            setEmails([json.data, ...emails]);
+        } catch(err) {
+            console.error(err);
+        }
     }
-  };
 
-  const fetchEmails = async (keyword) => {
-    try {
-      const response = await fetch(`/api?kw=${keyword ? keyword : ""}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: null,
-      });
+    const fetchEmails = async (keyword) => {
+        try {
+            const response = await fetch(`/api?kw=${keyword ? keyword : ''}`, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: null
+            });
 
-      if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText}`);
-      }
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
 
-      const json = await response.json();
+            const json = await response.json();
 
-      if (json.result !== "success") {
-        throw new Error(`${json.result} ${json.message}`);
-      }
+            if(json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`)
+            }
 
-      console.log(json.data);
-      setEmails(json.data);
-    } catch (err) {
-      console.error(err);
+            setEmails(json.data);
+        } catch(err) {
+            console.error(err);
+        }
     }
-  };
 
-  useEffect(() => {
-    fetchEmails();
-  }, []);
+    useEffect(() => {
+        fetchEmails();
+    }, []);
 
-  return (
-    <div id={"App"}>
-      <RegisterForm addEmail={addEmail} />
-      <SearchBar fetchEmails={fetchEmails} />
-      {emails === null ? null : <Emaillist emails={emails} />}
-    </div>
-  );
+    return (
+        <div id={'App'}>
+            <RegisterForm addEmail={addEmail} />
+            <SearchBar fetchEmails={fetchEmails}/>
+            { emails === null ?
+                null :
+                <Emaillist emails={emails} />
+            }
+        </div>
+    );
 }
 
-export { App };
+export {App};

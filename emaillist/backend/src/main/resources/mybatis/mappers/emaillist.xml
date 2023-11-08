@@ -2,26 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="emaillist">
-
+	
 	<select id="findAll" resultType="emaillistvo" parameterType="string">
 		<choose>
-		<when test="keyword == null or keyword==''">
-		 select no, first_name, last_name, email
-		    from emaillist 
-        order by no desc
-		</when>
-		<otherwise>
-		<![CDATA[
-		  select no, first_name, last_name, email
-		    from emaillist
-		    where first_name like '%${keyword}%' or last_name like '%${keyword}%'
-		    or email like '%${keyword}%' 
-        order by no desc
-		]]>
+			<when test="keyword == null or keyword ==''">
+				<![CDATA[
+				  select no, first_name, last_name, email
+				    from emaillist 
+		        order by no desc
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				  select no, first_name, last_name, email
+				    from emaillist
+				   where concat(first_name, last_name like) like '%${keyword}%'
+				      or email like '%${keyword}%'  
+		        order by no desc
+				]]>
+			</otherwise>
+		</choose>		
 		
-		</otherwise>
-		</choose>
-	
+		
 	</select>
 
 	<insert id="insert" parameterType="emaillistvo">
@@ -31,9 +33,9 @@
 		values (null, #{firstName }, #{lastName }, #{email })
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
-		<![CDATA[
-		select last_insert_id()
-		]]>
+			<![CDATA[
+			select last_insert_id()
+			]]>		
 		</selectKey>
 	</insert>
 </mapper>
