@@ -22,11 +22,9 @@ spring:
     suffix: .html
     cache: false
 
-# mybatis
 mybatis:
   config-location: classpath:mybatis/configuration.xml
 
-# logging
 logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
@@ -40,12 +38,10 @@ spring:
     activate:
       on-profile: development
 
-  # devtools - live reload
   devtools:
     livereload:
       enabled: true
 
-  #datasource
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://192.168.0.178:3307/webdb?charset=utf8
@@ -55,7 +51,6 @@ spring:
       minimum-idle: 10
       maximum-pool-size: 20
 
-# server
 server:
   port: 8080
   servlet:
@@ -71,7 +66,15 @@ spring:
     activate:
       on-profile: production
 
-# server
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.0.178:3307/webdb?charset=utf8
+    username: webdb
+    password: webdb
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+
 server:
   port: 8088
   servlet:
