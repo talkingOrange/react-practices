@@ -46,3 +46,5 @@ C:\Users\pc\Desktop\poscodx2023\eclipse\react-practices\emaillist\backend> mvn e
     - 실행 서버(SSH server ) 등록: springboot-publish-server
     - 프로젝트의 빌드 후 조치 ( post-build action )의 send build artifacts over ssh 설정
       1. emaillist.jar : transfer 
+      2. launch.sh: transfer + execution
+      
