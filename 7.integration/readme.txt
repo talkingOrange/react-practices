@@ -38,6 +38,15 @@ C:\Users\pc\Desktop\poscodx2023\eclipse\react-practices\emaillist\backend> mvn e
 5) 접속 테스트
     # ssh -i mykey.pem root@192.168.0.178
 
+6) 접속 환경 설정
+    1. ~/.ssh/environment
+        =====
+        PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/poscodx2023/java/bin:/usr/local/poscodx2023/git/bin:/usr/local/poscodx2023/maven/bin:/usr/local/poscodx2023/mariadb/bin:/root/bin
+        =====
+
+        
+    
+
 
 3-2. deploy: Publish Over SSH 플러그인(Jenkins)
 
@@ -47,4 +56,4 @@ C:\Users\pc\Desktop\poscodx2023\eclipse\react-practices\emaillist\backend> mvn e
     - 프로젝트의 빌드 후 조치 ( post-build action )의 send build artifacts over ssh 설정
       1. emaillist.jar : transfer 
       2. launch.sh: transfer + execution
-      
+
