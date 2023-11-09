@@ -105,6 +105,7 @@
 						<argument>run</argument>
 						<argument>build:fe</argument>
 					</arguments>
+					<environmentVariables></environmentVariables>
 				</configuration>
 			</plugin>		
 		</plugins>		
