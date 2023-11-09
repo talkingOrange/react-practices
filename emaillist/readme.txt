@@ -10,8 +10,3 @@ C:\Users\pc\Desktop\poscodx2023\eclipse\react-practices\emaillist\backend> mvn e
 
     3) 테스트
         # java -Dspring.profiles.active=production -jar emaillist/backend/target/emaillist.jar
-
-
-9090 : webpack 개발서버
-8080: 톰캣 서버
-8088: 테스트서버
